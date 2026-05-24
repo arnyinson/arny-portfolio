@@ -1,9 +1,9 @@
 import {
-    Linking,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Linking,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { colors } from "../constants/styles";
 
@@ -38,8 +38,6 @@ export default function Contact() {
           </TouchableOpacity>
         ))}
       </View>
-
-      {/* FOOTER */}
       <View style={styles.footer}>
         <Text style={styles.footerText}>ARNY INSON — 2025</Text>
         <Text style={styles.footerText}>BUILT WITH REACT NATIVE</Text>
