@@ -4,7 +4,7 @@ import { colors } from "../constants/styles";
 export default function Navbar() {
   return (
     <View style={styles.nav}>
-      <Text style={styles.logo}>AI_INSON</Text>
+      <Text style={styles.logo}>ARNY INSON PORTFOLIO</Text>
       <View style={styles.links}>
         <Text style={styles.link}>home</Text>
         <Text style={styles.link}>about</Text>
