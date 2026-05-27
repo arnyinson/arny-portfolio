@@ -1,18 +1,26 @@
-import { ScrollView, StyleSheet } from "react-native";
-import About from "../../src/components/About";
-import Contact from "../../src/components/Contact";
-import Hero from "../../src/components/Hero";
-import Navbar from "../../src/components/Navbar";
-import Projects from "../../src/components/Projects";
+import { ScrollView, StyleSheet, View } from "react-native";
+import About from "../components/About";
+import Contact from "../components/Contact";
+import Hero from "../components/Hero";
+import Navbar from "../components/Navbar";
+import Projects from "../components/Projects";
 
 export default function HomeScreen() {
   return (
     <ScrollView style={styles.container}>
-      <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <Contact />
+      <View nativeID="home">
+        <Navbar />
+        <Hero />
+      </View>
+      <View nativeID="about">
+        <About />
+      </View>
+      <View nativeID="projects">
+        <Projects />
+      </View>
+      <View nativeID="contact">
+        <Contact />
+      </View>
     </ScrollView>
   );
 }
@@ -20,6 +28,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0f0f0f",
+    backgroundColor: "#ffffff",
   },
 });

@@ -1,23 +1,22 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { colors } from "../constants/styles";
 
 export default function Hero() {
   return (
     <View style={styles.hero}>
-      <Text style={styles.tag}>● AVAILABLE FOR WORK</Text>
+      <Text style={styles.greeting}>Hi, I'm</Text>
       <Text style={styles.name}>Arny Inson</Text>
-      <Text style={styles.sub}>IT STUDENT / WEB & MOBILE DEVELOPER</Text>
+      <Text style={styles.title}>IT Student at STI San Jose del Monte</Text>
       <Text style={styles.desc}>
-        A passionate IT student building modern web and mobile applications.
-        Focused on creating clean, functional, and user-friendly digital
-        experiences.
+        A 3rd year IT student passionate about web and mobile development.
+        Currently learning and building projects using HTML, CSS, JavaScript,
+        Java, C#, Python, and React Native.
       </Text>
       <View style={styles.btnRow}>
         <TouchableOpacity style={styles.btnPrimary}>
-          <Text style={styles.btnPrimaryText}>VIEW PROJECTS</Text>
+          <Text style={styles.btnPrimaryText}>View Projects</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.btnOutline}>
-          <Text style={styles.btnOutlineText}>CONTACT ME</Text>
+          <Text style={styles.btnOutlineText}>Contact Me</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -26,65 +25,62 @@ export default function Hero() {
 
 const styles = StyleSheet.create({
   hero: {
-    padding: 28,
-    borderBottomWidth: 0.5,
-    borderBottomColor: "#1e1e1e",
+    padding: 40,
+    alignItems: "center",
+    backgroundColor: "#f9fafb",
+    borderBottomWidth: 1,
+    borderBottomColor: "#d1d5db",
   },
-  tag: {
-    color: colors.green,
-    fontFamily: colors.mono,
-    fontSize: 11,
-    letterSpacing: 2,
-    marginBottom: 12,
+  greeting: {
+    fontSize: 18,
+    color: "#9ca3af",
+    marginBottom: 4,
   },
   name: {
-    color: colors.textPrimary,
-    fontFamily: colors.mono,
-    fontSize: 32,
-    fontWeight: "500",
-    marginBottom: 6,
+    fontSize: 40,
+    fontWeight: "700",
+    color: "#374151",
+    marginBottom: 8,
   },
-  sub: {
-    color: colors.textMuted,
-    fontFamily: colors.mono,
-    fontSize: 11,
-    letterSpacing: 1,
+  title: {
+    fontSize: 16,
+    color: "#6b7280",
     marginBottom: 16,
+    fontWeight: "500",
   },
   desc: {
-    color: colors.textSecondary,
-    fontSize: 13,
+    fontSize: 14,
+    color: "#9ca3af",
+    textAlign: "center",
     lineHeight: 22,
-    marginBottom: 24,
+    maxWidth: 500,
+    marginBottom: 28,
   },
   btnRow: {
     flexDirection: "row",
     gap: 12,
   },
   btnPrimary: {
-    backgroundColor: colors.green,
-    paddingVertical: 10,
-    paddingHorizontal: 22,
-    borderRadius: 4,
+    backgroundColor: "#6b7280",
+    paddingVertical: 12,
+    paddingHorizontal: 28,
+    borderRadius: 8,
   },
   btnPrimaryText: {
-    color: colors.bgDark,
-    fontFamily: colors.mono,
-    fontSize: 11,
+    color: "#ffffff",
+    fontSize: 14,
     fontWeight: "600",
-    letterSpacing: 1,
   },
   btnOutline: {
-    borderWidth: 0.5,
-    borderColor: colors.green,
-    paddingVertical: 10,
-    paddingHorizontal: 22,
-    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: "#9ca3af",
+    paddingVertical: 12,
+    paddingHorizontal: 28,
+    borderRadius: 8,
   },
   btnOutlineText: {
-    color: colors.green,
-    fontFamily: colors.mono,
-    fontSize: 11,
-    letterSpacing: 1,
+    color: "#6b7280",
+    fontSize: 14,
+    fontWeight: "600",
   },
 });

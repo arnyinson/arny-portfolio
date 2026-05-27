@@ -1,46 +1,36 @@
-import {
-  Linking,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { colors } from "../constants/styles";
+import { View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 
 const contacts = [
-  { label: "EMAIL", value: "arny@email.com", link: "mailto:arny@email.com" },
-  {
-    label: "GITHUB",
-    value: "github.com/arnyinson",
-    link: "https://github.com/arnyinson",
-  },
-  {
-    label: "LINKEDIN",
-    value: "linkedin.com/in/arnyinson",
-    link: "https://linkedin.com/in/arnyinson",
-  },
-  { label: "LOCATION", value: "Philippines", link: null },
+  { label: 'Email', value: 'arnyinson2516@gmail.com', link: 'mailto:arnyinson2516@gmail.com' },
+  { label: 'GitHub', value: 'github.com/arnyinson', link: 'https://github.com/arnyinson' },
+  { label: 'Location', value: 'Brgy. 180, Caloocan City', link: null },
 ];
 
 export default function Contact() {
   return (
     <View style={styles.section}>
-      <Text style={styles.label}>// CONTACT</Text>
+      <Text style={styles.title}>Contact Me</Text>
+      <Text style={styles.subtitle}>Feel free to reach out anytime!</Text>
+
       <View style={styles.grid}>
         {contacts.map((item) => (
           <TouchableOpacity
             key={item.label}
             style={styles.card}
             onPress={() => item.link && Linking.openURL(item.link)}
+            disabled={!item.link}
           >
-            <Text style={styles.cardLabel}>{item.label}</Text>
-            <Text style={styles.cardValue}>{item.value}</Text>
+            <Text style={styles.label}>{item.label}</Text>
+            <Text style={[styles.value, item.link && { color: '#6b7280' }]}>
+              {item.value}
+            </Text>
           </TouchableOpacity>
         ))}
       </View>
+
       <View style={styles.footer}>
-        <Text style={styles.footerText}>ARNY INSON — 2025</Text>
-        <Text style={styles.footerText}>BUILT WITH REACT NATIVE</Text>
+        <Text style={styles.footerText}>© 2025 Arny Inson. All rights reserved.</Text>
+        <Text style={styles.footerSub}>Built with React Native & Expo</Text>
       </View>
     </View>
   );
@@ -48,51 +38,63 @@ export default function Contact() {
 
 const styles = StyleSheet.create({
   section: {
-    padding: 28,
+    padding: 40,
+    backgroundColor: '#ffffff',
   },
-  label: {
-    color: colors.green,
-    fontFamily: colors.mono,
-    fontSize: 10,
-    letterSpacing: 3,
-    marginBottom: 16,
+  title: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#374151',
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#9ca3af',
+    textAlign: 'center',
+    marginBottom: 28,
   },
   grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+    justifyContent: 'center',
+    marginBottom: 40,
   },
   card: {
-    backgroundColor: colors.card,
-    borderWidth: 0.5,
-    borderColor: colors.border,
-    borderRadius: 8,
-    padding: 14,
-    width: "48%",
+    backgroundColor: '#f3f4f6',
+    borderWidth: 1,
+    borderColor: '#d1d5db',
+    borderRadius: 12,
+    padding: 20,
+    width: '45%',
+    minWidth: 200,
   },
-  cardLabel: {
-    color: colors.green,
-    fontFamily: colors.mono,
-    fontSize: 9,
-    letterSpacing: 2,
+  label: {
+    fontSize: 11,
+    color: '#9ca3af',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
     marginBottom: 6,
   },
-  cardValue: {
-    color: colors.textSecondary,
-    fontSize: 11,
+  value: {
+    fontSize: 14,
+    color: '#374151',
+    fontWeight: '500',
   },
   footer: {
-    marginTop: 40,
+    alignItems: 'center',
     paddingTop: 20,
-    borderTopWidth: 0.5,
-    borderTopColor: colors.borderMuted,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    borderTopWidth: 1,
+    borderTopColor: '#d1d5db',
   },
   footerText: {
-    color: colors.textDark,
-    fontFamily: colors.mono,
-    fontSize: 9,
-    letterSpacing: 1,
+    fontSize: 13,
+    color: '#9ca3af',
+    marginBottom: 4,
+  },
+  footerSub: {
+    fontSize: 12,
+    color: '#d1d5db',
   },
 });
