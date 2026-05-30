@@ -16,44 +16,104 @@ const projects = [
   },
   {
     num: "02",
-    title: "Baka Capstone to ",
-    desc: "Capstone Project: Nutrifit.",
-    tags: ["REACT NATIVE", "EXPO"],
+    title: "Project Two",
+    desc: "Short description of your project.",
+    tags: ["HTML", "CSS", "JavaScript"],
     link: null,
   },
   {
     num: "03",
-    title: "Game siguro",
-    desc: "Project sa Game dev next sem hehehe.",
-    tags: ["D pa sure"],
+    title: "Project Three",
+    desc: "Short description of your project.",
+    tags: ["Java"],
     link: null,
   },
 ];
 
-export default function Projects() {
+type Props = { isDark: boolean };
+
+export default function Projects({ isDark }: Props) {
   return (
-    <View style={styles.section}>
-      <Text style={styles.title}>My Projects</Text>
-      <Text style={styles.subtitle}>Things I have built so far</Text>
+    <View
+      style={[
+        styles.section,
+        {
+          backgroundColor: isDark ? "#111827" : "#f3f4f6",
+          borderBottomColor: isDark ? "#374151" : "#d1d5db",
+        },
+      ]}
+    >
+      <Text style={[styles.title, { color: isDark ? "#f9fafb" : "#374151" }]}>
+        My Projects
+      </Text>
+      <Text
+        style={[styles.subtitle, { color: isDark ? "#6b7280" : "#9ca3af" }]}
+      >
+        Things I have built so far
+      </Text>
       <View style={styles.grid}>
         {projects.map((project) => (
-          <View key={project.num} style={styles.card}>
-            <Text style={styles.num}>{project.num}</Text>
-            <Text style={styles.projectTitle}>{project.title}</Text>
-            <Text style={styles.desc}>{project.desc}</Text>
+          <View
+            key={project.num}
+            style={[
+              styles.card,
+              {
+                backgroundColor: isDark ? "#1f2937" : "#ffffff",
+                borderColor: isDark ? "#374151" : "#d1d5db",
+              },
+            ]}
+          >
+            <Text
+              style={[styles.num, { color: isDark ? "#4b5563" : "#d1d5db" }]}
+            >
+              {project.num}
+            </Text>
+            <Text
+              style={[
+                styles.projectTitle,
+                { color: isDark ? "#f9fafb" : "#374151" },
+              ]}
+            >
+              {project.title}
+            </Text>
+            <Text
+              style={[styles.desc, { color: isDark ? "#6b7280" : "#9ca3af" }]}
+            >
+              {project.desc}
+            </Text>
             <View style={styles.tagsRow}>
               {project.tags.map((tag) => (
-                <View key={tag} style={styles.tag}>
-                  <Text style={styles.tagText}>{tag}</Text>
+                <View
+                  key={tag}
+                  style={[
+                    styles.tag,
+                    {
+                      backgroundColor: isDark ? "#111827" : "#f3f4f6",
+                      borderColor: isDark ? "#374151" : "#d1d5db",
+                    },
+                  ]}
+                >
+                  <Text
+                    style={[
+                      styles.tagText,
+                      { color: isDark ? "#9ca3af" : "#6b7280" },
+                    ]}
+                  >
+                    {tag}
+                  </Text>
                 </View>
               ))}
             </View>
             {project.link && (
-              <TouchableOpacity
-                style={styles.linkBtn}
-                onPress={() => Linking.openURL(project.link!)}
-              >
-                <Text style={styles.linkText}>View on GitHub →</Text>
+              <TouchableOpacity onPress={() => Linking.openURL(project.link!)}>
+                <Text
+                  style={[
+                    styles.linkText,
+                    { color: isDark ? "#9ca3af" : "#6b7280" },
+                  ]}
+                >
+                  View on GitHub →
+                </Text>
               </TouchableOpacity>
             )}
           </View>
@@ -66,20 +126,16 @@ export default function Projects() {
 const styles = StyleSheet.create({
   section: {
     padding: 40,
-    backgroundColor: "#f3f4f6",
     borderBottomWidth: 1,
-    borderBottomColor: "#d1d5db",
   },
   title: {
     fontSize: 24,
     fontWeight: "700",
-    color: "#374151",
     textAlign: "center",
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 14,
-    color: "#9ca3af",
     textAlign: "center",
     marginBottom: 28,
   },
@@ -90,9 +146,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   card: {
-    backgroundColor: "#ffffff",
     borderWidth: 1,
-    borderColor: "#d1d5db",
     borderRadius: 12,
     padding: 20,
     width: "45%",
@@ -100,18 +154,15 @@ const styles = StyleSheet.create({
   },
   num: {
     fontSize: 12,
-    color: "#d1d5db",
     marginBottom: 8,
   },
   projectTitle: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#374151",
     marginBottom: 8,
   },
   desc: {
     fontSize: 13,
-    color: "#9ca3af",
     lineHeight: 20,
     marginBottom: 12,
   },
@@ -122,23 +173,16 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   tag: {
-    backgroundColor: "#f3f4f6",
     borderWidth: 1,
-    borderColor: "#d1d5db",
     paddingVertical: 3,
     paddingHorizontal: 10,
     borderRadius: 20,
   },
   tagText: {
-    color: "#6b7280",
     fontSize: 11,
     fontWeight: "500",
   },
-  linkBtn: {
-    marginTop: 4,
-  },
   linkText: {
-    color: "#6b7280",
     fontSize: 13,
     fontWeight: "500",
   },
