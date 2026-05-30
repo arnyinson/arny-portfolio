@@ -76,7 +76,7 @@ export default function Contact({ isDark }: Props) {
         <Text
           style={[styles.footerText, { color: isDark ? "#6b7280" : "#9ca3af" }]}
         >
-          © 2025 Arny Inson. All rights reserved.
+          © 2026 Arny Inson. All rights reserved.
         </Text>
         <Text
           style={[styles.footerSub, { color: isDark ? "#4b5563" : "#d1d5db" }]}

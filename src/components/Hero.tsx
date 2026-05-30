@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 const typingTexts = [
   "IT Student",
@@ -8,12 +8,49 @@ const typingTexts = [
   "React Native Dev",
 ];
 
+const facts = [
+  {
+    emoji: "💻",
+    text: "Arny started coding in C# before learning web development.",
+  },
+  {
+    emoji: "🎓",
+    text: "Arny is a 3rd year IT student at STI San Jose del Monte.",
+  },
+  {
+    emoji: "📱",
+    text: "This portfolio was built using React Native — a mobile framework used for web!",
+  },
+  {
+    emoji: "🌐",
+    text: "Arny knows 6 programming languages: HTML, CSS, JavaScript, Java, C#, and Python.",
+  },
+  {
+    emoji: "🏢",
+    text: "Arny is a member of IntelliTech organization since 2023.",
+  },
+  {
+    emoji: "📍",
+    text: "Arny lives in Barangay 180, Caloocan City, Philippines.",
+  },
+  {
+    emoji: "🚀",
+    text: "This is Arny's very first portfolio website — built from scratch!",
+  },
+];
+
 type Props = { isDark: boolean };
 
 export default function Hero({ isDark }: Props) {
   const [currentText, setCurrentText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [fact, setFact] = useState(facts[0]);
+
+  useEffect(() => {
+    const random = Math.floor(Math.random() * facts.length);
+    setFact(facts[random]);
+  }, []);
 
   useEffect(() => {
     const fullText = typingTexts[currentIndex];
@@ -36,6 +73,11 @@ export default function Hero({ isDark }: Props) {
     );
     return () => clearTimeout(timeout);
   }, [currentText, isDeleting, currentIndex]);
+
+  const nextFact = () => {
+    const random = Math.floor(Math.random() * facts.length);
+    setFact(facts[random]);
+  };
 
   return (
     <View
@@ -76,31 +118,35 @@ export default function Hero({ isDark }: Props) {
         Currently learning and building projects using HTML, CSS, JavaScript,
         Java, C#, Python, and React Native.
       </Text>
-      <View style={styles.btnRow}>
-        <TouchableOpacity
-          style={[
-            styles.btnPrimary,
-            { backgroundColor: isDark ? "#4b5563" : "#6b7280" },
-          ]}
+
+      {/* Fun Fact Card */}
+      <View
+        style={[
+          styles.factCard,
+          {
+            backgroundColor: isDark ? "#1f2937" : "#ffffff",
+            borderColor: isDark ? "#374151" : "#e5e7eb",
+          },
+        ]}
+      >
+        <Text style={styles.factEmoji}>{fact.emoji}</Text>
+        <Text
+          style={[styles.factLabel, { color: isDark ? "#6b7280" : "#9ca3af" }]}
         >
-          <Text style={styles.btnPrimaryText}>View Projects</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.btnOutline,
-            { borderColor: isDark ? "#4b5563" : "#9ca3af" },
-          ]}
+          Did you know?
+        </Text>
+        <Text
+          style={[styles.factText, { color: isDark ? "#f9fafb" : "#374151" }]}
         >
-          <Text
-            style={[
-              styles.btnOutlineText,
-              { color: isDark ? "#9ca3af" : "#6b7280" },
-            ]}
-          >
-            Contact Me
-          </Text>
-        </TouchableOpacity>
+          {fact.text}
+        </Text>
       </View>
+      <Text
+        style={[styles.factBtn, { color: isDark ? "#6b7280" : "#9ca3af" }]}
+        onPress={nextFact}
+      >
+        ↻ Another fact
+      </Text>
     </View>
   );
 }
@@ -148,28 +194,33 @@ const styles = StyleSheet.create({
     maxWidth: 500,
     marginBottom: 28,
   },
-  btnRow: {
-    flexDirection: "row",
-    gap: 12,
-  },
-  btnPrimary: {
-    paddingVertical: 12,
-    paddingHorizontal: 28,
-    borderRadius: 8,
-  },
-  btnPrimaryText: {
-    color: "#ffffff",
-    fontSize: 14,
-    fontWeight: "600",
-  },
-  btnOutline: {
+  factCard: {
     borderWidth: 1,
-    paddingVertical: 12,
-    paddingHorizontal: 28,
-    borderRadius: 8,
+    borderRadius: 12,
+    padding: 20,
+    alignItems: "center",
+    maxWidth: 400,
+    width: "100%",
+    marginBottom: 12,
   },
-  btnOutlineText: {
+  factEmoji: {
+    fontSize: 32,
+    marginBottom: 8,
+  },
+  factLabel: {
+    fontSize: 11,
+    letterSpacing: 1,
+    textTransform: "uppercase",
+    marginBottom: 8,
+  },
+  factText: {
     fontSize: 14,
-    fontWeight: "600",
+    textAlign: "center",
+    lineHeight: 22,
+  },
+  factBtn: {
+    fontSize: 13,
+    paddingVertical: 8,
+    paddingHorizontal: 20,
   },
 });
