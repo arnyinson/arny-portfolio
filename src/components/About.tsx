@@ -1,14 +1,72 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useEffect, useRef } from "react";
+import { Animated, StyleSheet, Text, View } from "react-native";
 
 const skills = [
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "Java",
-  "C#",
-  "Python",
-  "React Native",
+  { name: "HTML", short: "HTML" },
+  { name: "CSS", short: "CSS" },
+  { name: "JavaScript", short: "JS" },
+  { name: "Java", short: "Java" },
+  { name: "C#", short: "C#" },
+  { name: "Python", short: "Py" },
+  { name: "React Native", short: "RN" },
 ];
+
+function BouncingIcon({
+  skill,
+  delay,
+  isDark,
+}: {
+  skill: (typeof skills)[0];
+  delay: number;
+  isDark: boolean;
+}) {
+  const bounceAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.delay(delay),
+        Animated.timing(bounceAnim, {
+          toValue: -12,
+          duration: 400,
+          useNativeDriver: true,
+        }),
+        Animated.timing(bounceAnim, {
+          toValue: 0,
+          duration: 400,
+          useNativeDriver: true,
+        }),
+        Animated.delay(800),
+      ]),
+    ).start();
+  }, []);
+
+  return (
+    <View style={styles.iconWrap}>
+      <Animated.View
+        style={[
+          styles.iconBox,
+          {
+            backgroundColor: isDark ? "#1f2937" : "#ffffff",
+            borderColor: isDark ? "#374151" : "#d1d5db",
+            transform: [{ translateY: bounceAnim }],
+          },
+        ]}
+      >
+        <Text
+          style={[styles.iconText, { color: isDark ? "#f9fafb" : "#374151" }]}
+        >
+          {skill.short}
+        </Text>
+      </Animated.View>
+      <Text
+        style={[styles.iconLabel, { color: isDark ? "#6b7280" : "#9ca3af" }]}
+      >
+        {skill.name}
+      </Text>
+    </View>
+  );
+}
 
 type Props = { isDark: boolean };
 
@@ -18,7 +76,7 @@ export default function About({ isDark }: Props) {
       style={[
         styles.section,
         {
-          backgroundColor: isDark ? "#1f2937" : "#ffffff",
+          backgroundColor: isDark ? "#111827" : "#ffffff",
           borderBottomColor: isDark ? "#374151" : "#d1d5db",
         },
       ]}
@@ -44,7 +102,7 @@ export default function About({ isDark }: Props) {
             style={[
               styles.infoCard,
               {
-                backgroundColor: isDark ? "#111827" : "#f3f4f6",
+                backgroundColor: isDark ? "#1f2937" : "#f3f4f6",
                 borderColor: isDark ? "#374151" : "#d1d5db",
               },
             ]}
@@ -74,27 +132,14 @@ export default function About({ isDark }: Props) {
       >
         Skills & Languages
       </Text>
-      <View style={styles.skillsRow}>
-        {skills.map((skill) => (
-          <View
-            key={skill}
-            style={[
-              styles.skillTag,
-              {
-                backgroundColor: isDark ? "#111827" : "#f3f4f6",
-                borderColor: isDark ? "#374151" : "#d1d5db",
-              },
-            ]}
-          >
-            <Text
-              style={[
-                styles.skillText,
-                { color: isDark ? "#9ca3af" : "#6b7280" },
-              ]}
-            >
-              {skill}
-            </Text>
-          </View>
+      <View style={styles.iconsRow}>
+        {skills.map((skill, i) => (
+          <BouncingIcon
+            key={skill.name}
+            skill={skill}
+            delay={i * 150}
+            isDark={isDark}
+          />
         ))}
       </View>
     </View>
@@ -146,23 +191,32 @@ const styles = StyleSheet.create({
   skillsTitle: {
     fontSize: 16,
     fontWeight: "600",
-    marginBottom: 12,
+    marginBottom: 20,
     textAlign: "center",
   },
-  skillsRow: {
+  iconsRow: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: 8,
+    gap: 16,
     justifyContent: "center",
   },
-  skillTag: {
-    borderWidth: 1,
-    paddingVertical: 6,
-    paddingHorizontal: 14,
-    borderRadius: 20,
+  iconWrap: {
+    alignItems: "center",
+    gap: 6,
   },
-  skillText: {
+  iconBox: {
+    width: 64,
+    height: 64,
+    borderRadius: 16,
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  iconText: {
     fontSize: 13,
-    fontWeight: "500",
+    fontWeight: "600",
+  },
+  iconLabel: {
+    fontSize: 11,
   },
 });
