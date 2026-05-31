@@ -9,8 +9,8 @@ import {
 const contacts = [
   {
     label: "Email",
-    value: "arnyinson@gmail.com",
-    link: "mailto:arnyinson@gmail.com",
+    value: "arnyinson@2516gmail.com",
+    link: "mailto:arnyinson2516@gmail.com",
   },
   {
     label: "GitHub",
