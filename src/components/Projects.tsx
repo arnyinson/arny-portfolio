@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 
@@ -33,6 +34,9 @@ const projects = [
 type Props = { isDark: boolean };
 
 export default function Projects({ isDark }: Props) {
+  const { width } = useWindowDimensions();
+  const isMobile = width < 768;
+
   return (
     <View
       style={[
@@ -51,7 +55,7 @@ export default function Projects({ isDark }: Props) {
       >
         Things I have built so far
       </Text>
-      <View style={styles.grid}>
+      <View style={[styles.grid, isMobile && styles.gridMobile]}>
         {projects.map((project) => (
           <View
             key={project.num}
@@ -61,6 +65,7 @@ export default function Projects({ isDark }: Props) {
                 backgroundColor: isDark ? "#1f2937" : "#ffffff",
                 borderColor: isDark ? "#374151" : "#d1d5db",
               },
+              isMobile && styles.cardMobile,
             ]}
           >
             <Text
@@ -125,7 +130,7 @@ export default function Projects({ isDark }: Props) {
 
 const styles = StyleSheet.create({
   section: {
-    padding: 40,
+    padding: 24,
     borderBottomWidth: 1,
   },
   title: {
@@ -145,12 +150,18 @@ const styles = StyleSheet.create({
     gap: 16,
     justifyContent: "center",
   },
+  gridMobile: {
+    flexDirection: "column",
+  },
   card: {
     borderWidth: 1,
     borderRadius: 12,
     padding: 20,
     width: "45%",
-    minWidth: 280,
+    overflow: "hidden",
+  },
+  cardMobile: {
+    width: "100%",
   },
   num: {
     fontSize: 12,
